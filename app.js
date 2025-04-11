@@ -43,7 +43,8 @@ app.post("/api/upload-image", (req, res) => {
   const filename = `upload_${Date.now()}.${ext}`;
   const filepath = path.join(__dirname, "uploads", filename);
   // const fileUrl = `http://localhost:3000/uploads/${filename}`;
-  const fileUrl = `${process.env.base_url_tshirt}/${filename}`;
+  const fileUrl = `https://api.toponpage.com/uploads/${filename}`;
+  // const fileUrl = `${process.env.base_url_tshirt}/${filename}`;
 
   fs.mkdirSync(path.join(__dirname, "uploads"), { recursive: true });
   fs.writeFileSync(filepath, buffer);
@@ -77,7 +78,7 @@ app.post("/api/upload", (req, res) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "X-API-KEY": process.env.tshirt_keyApi,
+      "X-API-KEY": "sk_e11acfd691564b90828d57f4a7977500",
     },
     data: data,
   };
@@ -86,6 +87,9 @@ app.post("/api/upload", (req, res) => {
     .request(config)
     .then((response) => {
       console.log("url gen image =>", JSON.stringify(response.data));
+
+      // 🔴 เพิ่มตรงนี้
+      console.log("🪵 ตรวจสอบโครงสร้าง response:", response.data);
 
       // เอาชื่อไฟล์จาก URL และลบไฟล์ที่ใช้งาน
       const fileName = uploadedImage.split("/").pop(); // ดึงชื่อไฟล์จาก URL

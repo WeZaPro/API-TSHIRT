@@ -15,9 +15,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // Allow handling FormData
 app.use(bodyParser.json());
 
 // แทนด้วยข้อมูลจาก LINE Developer Console
-const LINE_CHANNEL_ID = process.env.LINE_CHANNEL_ID;
-const LINE_CHANNEL_SECRET = process.env.LINE_CHANLINE_CHANNEL_SECRETNEL_ID;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+// const LINE_CHANNEL_ID = process.env.LINE_CHANNEL_ID;
+// const LINE_CHANNEL_SECRET = process.env.LINE_CHANLINE_CHANNEL_SECRETNEL_ID;
+// const REDIRECT_URI = process.env.REDIRECT_URI;
+
+const LINE_CHANNEL_ID = "2007207985";
+const LINE_CHANNEL_SECRET =
+  "+LhzvgPuLx2kLVSiuBL7urbD4dq4LYruwMH5uo9udb4qZQajCNI3aAXyXv7/Yt8dI99W4WwAUU2WMCZX0o28CW9E2+22lkS9PtuiO5lFDpIK2z3YkIrJGD/pLXzpWAsOU0/1Asx/YPHuNzxbuaKURwdB04t89/1O/w1cDnyilFU=";
+const REDIRECT_URI = "http://toponpage.com/LineCallback";
 
 // ตั้งค่าการเชื่อมต่อกับ LINE
 const config = {
