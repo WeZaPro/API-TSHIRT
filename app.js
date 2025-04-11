@@ -63,14 +63,6 @@ app.post("/api/upload", (req, res) => {
     garment_image_url: cardImage,
   });
 
-  // const testTshirt = process.env.testTshirt;
-  // const modelMan = process.env.modelMan;
-
-  // let data = JSON.stringify({
-  //   person_image_url: modelMan,
-  //   garment_image_url: testTshirt,
-  // });
-
   let config = {
     method: "post",
     maxBodyLength: Infinity,
@@ -79,6 +71,7 @@ app.post("/api/upload", (req, res) => {
       "Content-Type": "application/json",
       Accept: "application/json",
       "X-API-KEY": "sk_e11acfd691564b90828d57f4a7977500",
+      // /"X-API-KEY": "sk_3b33985a8efd46ab9f0d4d2ba4478264",
     },
     data: data,
   };
@@ -104,6 +97,40 @@ app.post("/api/upload", (req, res) => {
       console.error("API error =>", error.message);
       res.status(500).json({ error: "Failed to generate image" });
     });
+});
+
+const CHANNEL_ACCESS_TOKEN =
+  "+LhzvgPuLx2kLVSiuBL7urbD4dq4LYruwMH5uo9udb4qZQajCNI3aAXyXv7/Yt8dI99W4WwAUU2WMCZX0o28CW9E2+22lkS9PtuiO5lFDpIK2z3YkIrJGD/pLXzpWAsOU0/1Asx/YPHuNzxbuaKURwdB04t89/1O/w1cDnyilFU=";
+
+app.post("/send-line-image", async (req, res) => {
+  const { imageUrl, userId } = req.body;
+
+  try {
+    const response = await axios.post(
+      "https://api.line.me/v2/bot/message/push",
+      {
+        to: userId,
+        messages: [
+          {
+            type: "image",
+            originalContentUrl: imageUrl,
+            previewImageUrl: imageUrl,
+          },
+        ],
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${CHANNEL_ACCESS_TOKEN}`,
+        },
+      }
+    );
+
+    res.json({ message: "✅ ส่งภาพสำเร็จ", data: response.data });
+  } catch (error) {
+    console.error("❌ ส่งภาพล้มเหลว:", error.response?.data || error.message);
+    res.status(500).json({ error: error.response?.data || error.message });
+  }
 });
 
 // ให้ Express เสิร์ฟไฟล์ใน /uploads เป็น static URL

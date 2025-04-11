@@ -20,14 +20,14 @@ app.use(bodyParser.json());
 // const REDIRECT_URI = process.env.REDIRECT_URI;
 
 const LINE_CHANNEL_ID = "2007207985";
-const LINE_CHANNEL_SECRET =
-  "+LhzvgPuLx2kLVSiuBL7urbD4dq4LYruwMH5uo9udb4qZQajCNI3aAXyXv7/Yt8dI99W4WwAUU2WMCZX0o28CW9E2+22lkS9PtuiO5lFDpIK2z3YkIrJGD/pLXzpWAsOU0/1Asx/YPHuNzxbuaKURwdB04t89/1O/w1cDnyilFU=";
+const LINE_CHANNEL_SECRET = "066c773739e78a25b5accfb2ac49dda7";
 const REDIRECT_URI = "http://toponpage.com/LineCallback";
 
 // ตั้งค่าการเชื่อมต่อกับ LINE
 const config = {
-  channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.LINE_CHANNEL_SECRET,
+  channelAccessToken:
+    "ER8oSzlDDk1H8HkkBNoyBUNntemq0GJdhVjnA3IVJMAh+PNOjFlHnVH95qmPJKu4co7EgKK2Pip86q52zMn8t1CNqAq+pofA3le3t0WmJsVg8V0Jqmhh0FKjXNb98ighg6CHJT4rvaEKd6H0UUM5zwdB04t89/1O/w1cDnyilFU=",
+  channelSecret: "066c773739e78a25b5accfb2ac49dda7",
 };
 
 const client = new line.Client(config);
